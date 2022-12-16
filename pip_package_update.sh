@@ -2,7 +2,7 @@
 
 make_req_file(){
 	echo "Making pip_upgradable.txt file"
-	pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 > pip_upgradable.txt
+        pip list --outdated --format json | jq -r '.[].name' > pip_upgradable.txt
 	echo "Done"
 }
 
